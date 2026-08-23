@@ -1,0 +1,6 @@
+{
+  "appId": "ir.yourorg.lmsclient",
+  "appName": "مرکز منابع یادگیری",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

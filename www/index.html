@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>اپ کاربر</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- صفحه اتصال به سرور -->
+  <div id="screen-connect" class="screen center-screen">
+    <h1>اتصال به سیستم</h1>
+    <p class="note" style="max-width:300px">کد اتصالی که از واحد پشتیبانی سازمان دریافت کرده‌اید را وارد کنید.</p>
+    <div style="width:100%;max-width:300px">
+      <textarea id="connectionCodeInput" rows="3" placeholder="کد اتصال را اینجا جای‌گذاری کنید…"></textarea>
+      <div id="connectError" class="note" style="color:var(--danger)"></div>
+      <button class="btn block" style="margin-top:10px" onclick="Client.saveConnection()">اتصال</button>
+    </div>
+  </div>
+
+  <!-- صفحه ورود -->
+  <div id="screen-login" class="screen center-screen hidden">
+    <h1 id="loginBrand">ورود</h1>
+    <div style="width:100%;max-width:300px;text-align:right">
+      <label>کد پرسنلی</label>
+      <input type="text" id="loginPersonnel">
+      <label>کد ملی</label>
+      <input type="password" id="loginNational">
+      <div id="loginError" class="note" style="color:var(--danger)"></div>
+      <button class="btn block" style="margin-top:12px" onclick="Client.login()">ورود</button>
+      <button class="btn secondary block" style="margin-top:8px" onclick="Client.resetConnection()">تغییر سرور متصل</button>
+    </div>
+  </div>
+
+  <!-- برنامه اصلی -->
+  <div id="screen-main" class="hidden" style="display:flex;flex-direction:column;height:100%">
+    <div class="topbar">
+      <span id="mainBrand" style="font-weight:800;font-size:14px"></span>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button onclick="Client.toggleTheme()" class="btn secondary" style="padding:6px 10px;font-size:11px;border-color:rgba(244,239,228,.3);color:var(--paper)">🌓</button>
+        <button onclick="Client.logout()" class="btn secondary" style="padding:6px 10px;font-size:11px;border-color:rgba(244,239,228,.3);color:var(--paper)">خروج</button>
+      </div>
+    </div>
+    <div class="screen" id="mainContent"></div>
+  </div>
+
+  <div id="loading" class="screen center-screen hidden">
+    <div class="spinner"></div>
+    <div class="note" id="loadingText">در حال بارگذاری…</div>
+  </div>
+
+  <div id="lightbox" class="hidden" style="position:fixed;inset:0;background:rgba(15,33,29,.9);display:flex;align-items:center;justify-content:center;z-index:80" onclick="Client.closeLightbox()">
+    <img id="lightboxImg" style="max-width:88%;max-height:88%;border-radius:10px" />
+  </div>
+
+  <div id="toast" class="toast"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
